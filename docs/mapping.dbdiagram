@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "detailLevel": "All",
+  "tablePositions": [
+    {
+      "name": "users",
+      "schemaName": "public",
+      "x": 0,
+      "y": 50
+    },
+    {
+      "name": "members",
+      "schemaName": "public",
+      "x": 325.05517578125,
+      "y": 50
+    }
+  ],
+  "tableGroupCollapseStates": [],
+  "stickyNoteLayouts": [],
+  "referencePaths": [
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_id"
+      ],
+      "secondTableName": "members",
+      "secondSchemaName": "public",
+      "secondRelation": "1",
+      "checkPoints": []
+    }
+  ]
+}
