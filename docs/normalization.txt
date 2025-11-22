@@ -1,0 +1,10 @@
+1NF
+All tables have atomic attributes, primary keys, and no repeating groups.
+Therefore, the schema is in 1NF.
+
+2NF
+The schema satisfies Second Normal Form. While most tables use surrogate primary keys, ClassRegistration has a natural composite candidate key of
+(member_id, class_id),no  attribute depends only on member_id and no attribute depends only on class_id
+3NF
+All tables are in Third Normal Form with no transitive dependencies. A potential concern was the relationship between room_number and floor, however
+room numbers are arbitary labels,so afunctional dependencies doesnt exist.

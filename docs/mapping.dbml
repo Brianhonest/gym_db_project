@@ -74,6 +74,9 @@ Table ClassRegistration {
   member_id int [ref: > member.user_id]
   registration_date timestamp [default: `now()`]
   attendance_status attendance_status [not null]
+  indexes {
+    (member_id, class_id) [unique] // Natural key
+  }
 }
 
 Table FitnessGoal {
