@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "darkMode": true,
-  "gridEnabling": false,
+  "gridEnabling": true,
   "detailLevel": "All",
   "tablePositions": [
     {
@@ -11,10 +11,64 @@
       "y": 50
     },
     {
-      "name": "members",
+      "name": "member",
       "schemaName": "public",
-      "x": 325.05517578125,
+      "x": 327.93359375,
       "y": 50
+    },
+    {
+      "name": "trainer",
+      "schemaName": "public",
+      "x": 746.10546875,
+      "y": 50
+    },
+    {
+      "name": "admin",
+      "schemaName": "public",
+      "x": 1156.40625,
+      "y": 50
+    },
+    {
+      "name": "room",
+      "schemaName": "public",
+      "x": 0,
+      "y": 356
+    },
+    {
+      "name": "Groupclass",
+      "schemaName": "public",
+      "x": 327.93359375,
+      "y": 228
+    },
+    {
+      "name": "ClassRegistration",
+      "schemaName": "public",
+      "x": 746.10546875,
+      "y": 228
+    },
+    {
+      "name": "FitnessGoal",
+      "schemaName": "public",
+      "x": 1156.40625,
+      "y": 196
+    },
+    {
+      "name": "HealthMetric",
+      "schemaName": "public",
+      "x": 0,
+      "y": 662
+    },
+    {
+      "name": "PersonalTrainingSession",
+      "schemaName": "public",
+      "x": 327.93359375,
+      "y": 502
+    },
+    {
+      "name": "TrainerAvailability",
+      "schemaName": "public",
+      "x": 746.10546875,
+      "y": 470
     }
   ],
   "tableGroupCollapseStates": [],
@@ -30,9 +84,189 @@
       "secondFieldNames": [
         "user_id"
       ],
-      "secondTableName": "members",
+      "secondTableName": "member",
       "secondSchemaName": "public",
       "secondRelation": "1",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_id"
+      ],
+      "secondTableName": "trainer",
+      "secondSchemaName": "public",
+      "secondRelation": "1",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_id"
+      ],
+      "secondTableName": "admin",
+      "secondSchemaName": "public",
+      "secondRelation": "1",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "room_id"
+      ],
+      "firstTableName": "room",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "room_id"
+      ],
+      "secondTableName": "Groupclass",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "trainer",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "trainer_id"
+      ],
+      "secondTableName": "Groupclass",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "class_id"
+      ],
+      "firstTableName": "Groupclass",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "class_id"
+      ],
+      "secondTableName": "ClassRegistration",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "member",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "member_id"
+      ],
+      "secondTableName": "ClassRegistration",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "member",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "member_id"
+      ],
+      "secondTableName": "FitnessGoal",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "member",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "member_id"
+      ],
+      "secondTableName": "HealthMetric",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "trainer",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "trainer_id"
+      ],
+      "secondTableName": "PersonalTrainingSession",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "member",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "member_id"
+      ],
+      "secondTableName": "PersonalTrainingSession",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "room_id"
+      ],
+      "firstTableName": "room",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "room_id"
+      ],
+      "secondTableName": "PersonalTrainingSession",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "user_id"
+      ],
+      "firstTableName": "trainer",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "trainer_id"
+      ],
+      "secondTableName": "TrainerAvailability",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
       "checkPoints": []
     }
   ]

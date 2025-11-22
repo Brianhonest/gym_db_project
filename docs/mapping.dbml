@@ -1,6 +1,163 @@
 Table users {
-  id integer [primary key]
-  username varchar
-  role varchar
-  created_at timestamp
+  user_id int [pk, increment]
+  first_name varchar(50) [not null]
+  last_name varchar(50) [not null]
+  email varchar(100) [unique, not null]
+  password_hash varchar(255) [not null]// Storing hashed passwords only
+  phone varchar(20)
+  created_at timestamp [default: `now()`]
+}
+
+Table member {
+  user_id int [pk,ref: - users.user_id]
+  date_of_birth date  
+  membership_status membership_status [not null]
+}
+
+Table trainer {
+  user_id int [pk,ref: - users.user_id]
+  specialty varchar(100)
+  certification varchar(100)
+}
+
+Table admin {
+  user_id int [pk,ref: - users.user_id]
+  role varchar(50) [not null]
+}
+
+// Enums for constrained attribute values
+Enum membership_status {
+  Active
+  Suspended
+  Cancelled
+  Pending
+  Expired
+}
+
+Table room{
+  room_id int [pk, increment]
+  room_name varchar(50) [not null]
+  capacity int [not null]
+  floor int [not null]
+  room_type room_type [not null]
+  room_number varchar(10) [not null, unique]
+  status room_status [not null]
+}
+Enum room_type {
+  Cardio
+  Weights
+  Studio
+  Pool
+  Sauna
+}
+Enum room_status {
+  Available
+  Occupied
+  Maintenance
+  Closed
+}
+
+Table Groupclass {
+  class_id int [pk, increment]
+  class_name varchar(100) [not null]
+  day day [not null]
+  start_time time [not null]
+  end_time time [not null]
+  capacity int [not null]
+  room_id int [ref: > room.room_id]
+  trainer_id int [ref: > trainer.user_id]
+}
+
+Table ClassRegistration {
+  registration_id int [pk, increment]
+  class_id int [ref: > Groupclass.class_id]
+  member_id int [ref: > member.user_id]
+  registration_date timestamp [default: `now()`]
+  attendance_status attendance_status [not null]
+}
+
+Table FitnessGoal {
+  goal_id int [pk, increment]
+  member_id int [ref: > member.user_id]
+  goal_type goal_type [not null]
+  created_at timestamp [default: `now()`]
+  deadline date
+  target_value varchar(100) [not null]
+  status goal_status [not null]
+}
+Enum attendance_status {
+  Registered
+  Attended
+  Missed
+  Cancelled
+}
+Enum goal_type {
+  WeightLoss
+  MuscleGain
+  Endurance
+  Flexibility
+  GeneralFitness
+}
+Enum progress_status {
+  NotStarted
+  InProgress
+  Achieved
+  Failed
+}
+Enum goal_status {
+  Active
+  Completed
+  Abandoned
+}
+
+Table HealthMetric {
+  metric_id int [pk, increment]
+  member_id int [ref: > member.user_id]
+  weight decimal(5,2)
+  heart_rate int
+  height decimal(5,2)
+  blood_pressure varchar(20)
+  body_fat_percentage decimal(5,2)
+  recorded_at timestamp [default: `now()`]
+}
+
+
+Table PersonalTrainingSession {
+  session_id int [pk, increment]
+  trainer_id int [ref: > trainer.user_id]
+  member_id int [ref: > member.user_id]
+  room_id int [ref: > room.room_id]  // ← ADD THIS
+  date date [not null]
+  start_time time [not null]
+  end_time time [not null]
+  session_status session_status [not null]
+}
+Enum session_status {
+  Scheduled
+  Completed
+  Cancelled
+  NoShow
+}
+
+Table TrainerAvailability {
+  availability_id int [pk, increment]
+  trainer_id int [ref: > trainer.user_id]
+  day day [not null]  // ← Change from 'date' to 'day' enum
+  start_time time [not null]
+  end_time time [not null]
+  status availability_status [not null]
+}
+
+Enum availability_status {
+  Active
+  Inactive
+}
+Enum day {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
 }
