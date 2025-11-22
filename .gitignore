@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyc
+
+# Virtualenvs / env files
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+.Python
+venv.bak/
+__pypackages__/
+
+# dotenv / secrets
+.env
+.env.*
+secrets.json
+credentials.json
+
+# Database files (local/dev)
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# Migrations / DB tooling
+migrations/
+alembic_version/
+alembic.ini
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+*.whl
+pip-wheel-metadata/
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Caches / static analysis
+.mypy_cache/
+.dmypy.json
+.pyre/
+.cache/
+
+# IDEs / editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs, temp, misc
+*.log
+*.tmp
+*.pot
+*.mo
+*.swp
+*~ 
+*.bak
+*.old
+~$*
+
+# Node (if any frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log
+
+# Docker / Compose local overrides
+docker-compose.override.yml
+.env.docker
+
+# Optional project-specific
+gym_db/__pycache__/
+gym_db/models/__pycache__/
+gym_db/tests/__pycache__/
