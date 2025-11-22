@@ -27,3 +27,4 @@ class GroupClass(Base):
     trainer_id = Column(Integer, ForeignKey("trainer.user_id"))
     room = relationship("Room", back_populates="group_classes")
     trainer = relationship("Trainer", back_populates="group_classes")
+    registrations = relationship("ClassRegistration", back_populates="group_class")
