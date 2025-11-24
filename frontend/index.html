@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏋️ Gym Management System</h1>
+            <p>Health and Fitness Club Portal</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('member')">Member</button>
+            <button class="tab-button" onclick="showTab('trainer')">Trainer</button>
+            <button class="tab-button" onclick="showTab('admin')">Admin</button>
+        </div>
+
+        <!-- Member Tab Content -->
+        <div id="member-tab" class="tab-content active">
+            <h2>Member Operations</h2>
+            
+            <!-- Operation buttons -->
+            <div class="operation-buttons">
+                <button onclick="showOperation('register')">Register New Member</button>
+                <button onclick="showOperation('profile')">Update Profile</button>
+                <button onclick="showOperation('health')">Log Health Metrics</button>
+                <button onclick="showOperation('dashboard')">View Dashboard</button>
+                <button onclick="showOperation('class-register')">Register for Class</button>
+                <button onclick="showOperation('pt-schedule')">Schedule PT Session</button>
+            </div>
+
+            <!-- Operation Forms (initially hidden) -->
+            <div id="register-form" class="operation-form" style="display:none;">
+                <h3>Register New Member</h3>
+                <form onsubmit="registerMember(event)">
+                    <input type="text" name="first_name" placeholder="First Name" required>
+                    <input type="text" name="last_name" placeholder="Last Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="tel" name="phone" placeholder="Phone">
+                    <input type="date" name="date_of_birth" required>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            
+
+            <!-- Add more forms for other member operations -->
+            <div id="profile-form" class="operation-form" style="display:none;">
+                <h3>Update Profile</h3>
+                <p>Form coming soon...</p>
+            </div>
+
+            <!-- Response display -->
+            <div id="member-response" class="response"></div>
+        </div>
+
+        <!-- Trainer Tab Content -->
+        <div id="trainer-tab" class="tab-content">
+            <h2>Trainer Operations</h2>
+            <div class="operation-buttons">
+                <button onclick="showOperation('availability')">Set Availability</button>
+                <button onclick="showOperation('schedule')">View Schedule</button>
+            </div>
+            <div id="trainer-response" class="response"></div>
+        </div>
+
+        <!-- Admin Tab Content -->
+        <div id="admin-tab" class="tab-content">
+            <h2>Admin Operations</h2>
+            <div class="operation-buttons">
+                <button onclick="showOperation('create-class')">Create Group Class</button>
+                <button onclick="showOperation('room-booking')">Update Room Booking</button>
+            </div>
+            <div id="admin-response" class="response"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
