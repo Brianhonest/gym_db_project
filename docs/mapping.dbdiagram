@@ -13,8 +13,8 @@
     {
       "name": "member",
       "schemaName": "public",
-      "x": 327.93359375,
-      "y": 50
+      "x": 432,
+      "y": -88
     },
     {
       "name": "trainer",
@@ -37,8 +37,8 @@
     {
       "name": "Groupclass",
       "schemaName": "public",
-      "x": 327.93359375,
-      "y": 228
+      "x": 456,
+      "y": 160
     },
     {
       "name": "ClassRegistration",

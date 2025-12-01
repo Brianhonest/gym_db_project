@@ -4,7 +4,7 @@ from app.database import Base
 import enum
 from sqlalchemy.orm import relationship
 
-class daysOfWeek(enum.Enum):
+class DaysOfWeek(enum.Enum):
     MONDAY = "MONDAY"
     TUESDAY = "TUESDAY"
     WEDNESDAY = "WEDNESDAY"
@@ -18,7 +18,7 @@ class GroupClass(Base):
 
     class_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     class_name = Column(String, nullable=False)
-    day = Column(SQLEnum(daysOfWeek), nullable=False)
+    day = Column(SQLEnum(DaysOfWeek, name="days_of_week"), nullable=False)
     start_time = Column(Time, nullable=False)
     end_time = Column(Time, nullable=False)
     capacity = Column(Integer, nullable=False)

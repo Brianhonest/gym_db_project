@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏋️ Gym Management System</h1>
+            <p>Health and Fitness Club Portal</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('member')">Member</button>
+            <button class="tab-button" onclick="showTab('trainer')">Trainer</button>
+            <button class="tab-button" onclick="showTab('admin')">Admin</button>
+        </div>
+
+        <!-- Member Tab Content -->
+        <div id="member-tab" class="tab-content active">
+            <h2>Member Operations</h2>
+            
+            <!-- Operation buttons -->
+            <div class="operation-buttons">
+                <button onclick="showOperation('register')">Register New Member</button>
+                <button onclick="showOperation('profile')">Update Profile</button>
+                <button onclick="showOperation('health')">Log Health Metrics</button>
+                <button onclick="showOperation('dashboard')">View Dashboard</button>
+                <button onclick="showOperation('class-register')">Register for Class</button>
+                <button onclick="showOperation('pt-schedule')">Schedule PT Session</button>
+            </div>
+
+            <!-- Operation Forms (initially hidden) -->
+            <div id="register-form" class="operation-form" style="display:none;">
+                <h3>Register New Member</h3>
+                <form onsubmit="registerMember(event)">
+                    <input type="text" name="first_name" placeholder="First Name" required>
+                    <input type="text" name="last_name" placeholder="Last Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="tel" name="phone" placeholder="Phone">
+                    <input type="date" name="date_of_birth" required>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            
+            <div id="health-form" class="operation-form" style="display:none;">
+                <h3>Log Health Metrics</h3>
+                <form onsubmit="logHealthMetrics(event)">
+                    <input type="number" name="member_id" placeholder="Member ID" required>
+                    <input type="number" step="0.01" name="weight" placeholder="Weight (lbs)" required>
+                    <input type="number" name="heart_rate" placeholder="Heart Rate (bpm)" required>
+                    <input type="number" step="0.01" name="height" placeholder="Height (inches)" required>
+                    <input type="text" name="blood_pressure" placeholder="Blood Pressure (e.g., 120/80)" required>
+                    <input type="number" step="0.01" name="body_fat_percentage" placeholder="Body Fat %" required>
+                    <button type="submit">Log Metrics</button>
+                </form>
+            </div>
+            <!-- Add more forms for other member operations -->
+            <div id="profile-form" class="operation-form" style="display:none;">
+                <h3>Update Profile</h3>
+                <form onsubmit="updateProfile(event)">
+                    <input type="number" name="member_id" placeholder="Member ID" required>
+                    <input type="text" name="first_name" placeholder="First Name" required>
+                    <input type="text" name="last_name" placeholder="Last Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="tel" name="phone" placeholder="Phone">
+                    <input type="date" name="date_of_birth" placeholder="Date of Birth">
+                    <button type="submit">Update Profile</button>
+                </form>
+            </div>
+
+            <div id="dashboard-form" class="operation-form" style="display:none;">
+                <h3>View Dashboard</h3>
+                <form onsubmit="viewDashboard(event)">
+                    <input type="number" name="member_id" placeholder="Member ID" required>
+                    <button type="submit">View Dashboard</button>
+                </form>
+            </div>
+
+            <div id="class-register-form" class="operation-form" style="display:none;">
+                <h3>Register for Class</h3>
+                <form onsubmit="registerForClass(event)">
+                    <input type="number" name="member_id" placeholder="Member ID" required>
+                    <input type="number" name="class_id" placeholder="Class ID" required>
+                    <button type="submit">Register for Class</button>
+                </form>
+            </div>
+
+            <div id="pt-schedule-form" class="operation-form" style="display:none;">
+                <h3>Schedule PT Session</h3>
+                <form onsubmit="schedulePTSession(event)">
+                    <input type="number" name="member_id" placeholder="Member ID" required>
+                    <input type="number" name="trainer_id" placeholder="Trainer ID" required>
+                    <input type="date" name="session_date" placeholder="Session Date" required>
+                    <input type="time" name="start_time" placeholder="Start Time" required>
+                    <input type="time" name="end_time" placeholder="End Time" required>
+                    <input type="number" name="room_id" placeholder="Room ID" required>
+                    <input type="text" name="notes" placeholder="Notes (optional)">
+                    <button type="submit">Schedule Session</button>
+                </form>
+            </div>
+
+            <!-- Response display -->
+            <div id="member-response" class="response"></div>
+        </div>
+
+        <!-- Trainer Tab Content -->
+        <div id="trainer-tab" class="tab-content">
+            <h2>Trainer Operations</h2>
+            <div class="operation-buttons">
+                <button onclick="showOperation('availability')">Set Availability</button>
+                <button onclick="showOperation('schedule')">View Schedule</button>
+            </div>
+            <div id="trainer-response" class="response"></div>
+        </div>
+        <div id="availability-form" class="operation-form" style="display:none;">
+            <h3>Set Trainer Availability</h3>
+            <form onsubmit="setAvailability(event)">
+                <input type="number" name="trainer_id" placeholder="Trainer ID" required>
+                <select name="day" required>
+                    <option value="">Select Day</option>
+                    <option value="MONDAY">Monday</option>
+                    <option value="TUESDAY">Tuesday</option>
+                    <option value="WEDNESDAY">Wednesday</option>
+                    <option value="THURSDAY">Thursday</option>
+                    <option value="FRIDAY">Friday</option>
+                    <option value="SATURDAY">Saturday</option>
+                    <option value="SUNDAY">Sunday</option>
+                </select>
+                <input type="time" name="start_time" required>
+                <input type="time" name="end_time" required>
+                <button type="submit">Set Availability</button>
+            </form>
+        </div>
+
+        <div id="schedule-form" class="operation-form" style="display:none;">
+            <h3>View Schedule</h3>
+            <form onsubmit="viewSchedule(event)">
+                <input type="number" name="trainer_id" placeholder="Trainer ID" required>
+                <button type="submit">View Schedule</button>
+            </form>
+        </div>
+        <!-- Admin Tab Content -->
+        <div id="admin-tab" class="tab-content">
+            <h2>Admin Operations</h2>
+            <div class="operation-buttons">
+                <button onclick="showOperation('create-class')">Create Group Class</button>
+                <button onclick="showOperation('room-booking')">Update Room Booking</button>
+            </div>
+            <div id="admin-response" class="response"></div>
+        </div>
+
+        <div id="create-class-form" class="operation-form" style="display:none;">
+            <h3>Create Group Class</h3>
+            <form onsubmit="createGroupClass(event)">
+                <input type="text" name="class_name" placeholder="Class Name" required>
+                <select name="day" required>
+                    <option value="">Select Day</option>
+                    <option value="MONDAY">Monday</option>
+                    <option value="TUESDAY">Tuesday</option>
+                    <option value="WEDNESDAY">Wednesday</option>
+                    <option value="THURSDAY">Thursday</option>
+                    <option value="FRIDAY">Friday</option>
+                    <option value="SATURDAY">Saturday</option>
+                    <option value="SUNDAY">Sunday</option>
+                </select>
+                <input type="time" name="start_time" placeholder="Start Time" required>
+                <input type="time" name="end_time" placeholder="End Time" required>
+                <input type="number" name="trainer_id" placeholder="Trainer ID" required>
+                <input type="number" name="capacity" placeholder="Capacity" required>
+                <input type="number" name="room_id" placeholder="Room ID" required>
+                <button type="submit">Create Class</button>
+            </form>
+        </div>
+
+        <div id="room-booking-form" class="operation-form" style="display:none;">
+            <h3>Update Room Booking</h3>
+            <form onsubmit="updateRoomBooking(event)">
+                <input type="number" name="admin_id" placeholder="Admin ID" required>
+                <select name="booking_type" required>
+                    <option value="">Select Type</option>
+                    <option value="pt_session">PT Session</option>
+                    <option value="group_class">Group Class</option>
+                </select>
+                <input type="number" name="booking_id" placeholder="Session/Class ID" required>
+                <input type="number" name="new_room_id" placeholder="New Room ID" required>
+                <button type="submit">Update Room Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

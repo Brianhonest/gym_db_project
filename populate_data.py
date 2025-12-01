@@ -3,12 +3,12 @@ from app.database import SessionLocal, engine
 from models.user import User, Member, Trainer, Admin, MembershipStatus
 from models.room import Room, RoomType, RoomStatus
 from models.group_class import GroupClass
-from models.group_class import daysOfWeek as GroupClassDaysOfWeek
+from models.group_class import DaysOfWeek
 from models.fitness_goal import FitnessGoal, GoalTypeEnum, GoalStatusEnum
 from models.health_metric import HealthMetric
 from models.personal_training_session import PersonalTrainingSession, SessionStatus
 from models.class_registration import ClassRegistration, AttendanceStatus
-from models.trainer_availability import TrainerAvailability, AvailabilityStatus, daysOfWeek
+from models.trainer_availability import TrainerAvailability, AvailabilityStatus
 from datetime import datetime, date, time, timedelta
 
 def create_users(db: Session):
@@ -118,10 +118,10 @@ def create_group_classes(db: Session):
         return
     
     classes = [
-        GroupClass(class_name="Morning Yoga", day=GroupClassDaysOfWeek.MONDAY, 
+        GroupClass(class_name="Morning Yoga", day=DaysOfWeek.MONDAY, 
                    start_time=time(9, 0), end_time=time(10, 0),
                    capacity=15, room_id=1, trainer_id=4),
-        GroupClass(class_name="Evening Strength", day=GroupClassDaysOfWeek.WEDNESDAY,
+        GroupClass(class_name="Evening Strength", day=DaysOfWeek.WEDNESDAY,
                    start_time=time(18, 0), end_time=time(19, 0),
                    capacity=20, room_id=2, trainer_id=4),
     ]
@@ -138,11 +138,11 @@ def create_trainer_availability(db: Session):
         return
     
     availabilities = [
-        TrainerAvailability(trainer_id=4, dayOfWeek=daysOfWeek.MONDAY,
+        TrainerAvailability(trainer_id=4, dayOfWeek=DaysOfWeek.MONDAY,
                            start_time=datetime.combine(date.today(), time(8, 0)), 
                            end_time=datetime.combine(date.today(), time(17, 0)),
                            status=AvailabilityStatus.ACTIVE),
-        TrainerAvailability(trainer_id=4, dayOfWeek=daysOfWeek.WEDNESDAY,
+        TrainerAvailability(trainer_id=4, dayOfWeek=DaysOfWeek.WEDNESDAY,
                            start_time=datetime.combine(date.today(), time(8, 0)), 
                            end_time=datetime.combine(date.today(), time(17, 0)),
                            status=AvailabilityStatus.ACTIVE),
